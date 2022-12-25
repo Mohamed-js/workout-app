@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  url: postgres://zxtzrvzv:JAFDzU2fWSPFrvby4IRyini_Q2NbDQME@ella.db.elephantsql.com/zxtzrvzv
+
+test:
+  <<: *default
+  database: workout_development_test
+
+production:
+  <<: *default
+  url: postgres://zxtzrvzv:JAFDzU2fWSPFrvby4IRyini_Q2NbDQME@ella.db.elephantsql.com/zxtzrvzv

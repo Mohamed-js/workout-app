@@ -1,0 +1,45 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Bottombar from './components/layout/Bottombar';
+// import Addmove from './components/home/Addmove';
+// import Login from './components/landing/Login';
+// import SignUp from './components/landing/Signup';
+// import More from './containers/More';
+import Navbar from './components/layout/Navbar';
+// import NewRecord from './components/home/NewRecord';
+// import Home from './containers/Home';
+// import Landing from './containers/Landing';
+// import Showpage from './containers/Movement';
+// import Profile from './components/more/Profile';
+// import NewSpecificRecord from './components/home/NewSpecificRecord';
+// import Progress from './containers/Progress';
+import React from 'react';
+import './index.css';
+
+function App() {
+  return (
+    <div className="App">
+      <h1 className="text-center">Workout Track!</h1>
+      <div className="mobile-view flex-col justify-between">
+      <Router>
+        <Navbar back="true" />
+        {/* <Routes>
+          <Route exact path="/" element={()=> <Landing/>} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/new" component={Addmove} />
+          <Route exact path="/show/:id" component={Showpage} />
+          <Route exact path="/new-record" component={NewRecord} />
+          <Route exact path="/new-record/:id" component={NewSpecificRecord} />
+          <Route exact path="/more" component={More} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/progress" component={Progress} />
+        </Routes> */}
+        <Bottombar />
+      </Router>
+      </div>
+    </div>
+  );
+}
+
+export default App;
