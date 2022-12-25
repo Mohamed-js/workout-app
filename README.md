@@ -31,21 +31,11 @@
 ## Usage
 
 ```
-- git clone "https://github.com/Mohamed-js/workout-track.git"
+- git clone "https://github.com/Mohamed-js/workout-app.git"
 - cd workout-track
-- npm install
-- npm start
-```
-
-## Testing
 
 ```
-- git clone "https://github.com/Mohamed-js/workout-track.git"
-- cd workout-track
-- npm install
-- npm test
-- press a to run all tests
-```
+
 
 ## Authors
 
@@ -65,7 +55,6 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Microverse
 - Notion
 - Gregoire Vella - Designer
 - Behance
