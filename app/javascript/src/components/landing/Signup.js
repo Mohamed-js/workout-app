@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import { signup } from '../../Helper';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { signup } from "../../Helper";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [credits, setCredits] = useState({
-    name: '',
-    password: '',
+    name: "",
+    password: "",
   });
   const [success, setSuccess] = useState();
   const [failure, setFailure] = useState();
-  const user = JSON.parse(sessionStorage.getItem('current_user'));
+  const user = JSON.parse(sessionStorage.getItem("current_user"));
   if (user) {
-    navigate('/home');
+    navigate("/home");
   }
   const handleClick = () => {
-    const btn = document.getElementById('signup');
+    const btn = document.getElementById("signup");
     btn.disabled = true;
-    btn.style.backgroundColor = '#4caf50';
-    btn.value = 'Wait...';
+    btn.style.backgroundColor = "#4caf50";
+    btn.value = "Wait...";
   };
   const handleChange = (e) => {
     setCredits({ ...credits, [e.target.name]: e.target.value });
@@ -37,9 +37,9 @@ const SignUp = () => {
   };
 
   if (failure) {
-    const btn = document.getElementById('signup');
+    const btn = document.getElementById("signup");
     btn.disabled = false;
-    btn.style.backgroundColor = '#41b5e8';
+    btn.style.backgroundColor = "#41b5e8";
   }
   return (
     <div className="container">
@@ -49,13 +49,15 @@ const SignUp = () => {
       <div className="flex-col center">
         {success && (
           <span className="alert-good">
-            {success}
-            {' '}
-            <Link to="/login">Click here to login.</Link>
+            {success} <Link to="/login">Click here to login.</Link>
           </span>
         )}
-        {failure
-          && failure.map((fail) => <span key={fail} className="alert-bad">{fail}</span>)}
+        {failure &&
+          failure.map((fail) => (
+            <span key={fail} className="alert-bad">
+              {fail}
+            </span>
+          ))}
       </div>
       <br />
       <form onSubmit={handleSubmit} className="flex-col">
@@ -84,6 +86,7 @@ const SignUp = () => {
           value="SIGN UP"
         />
       </form>
+      <Link to={"/login"}>Already have an account? Login</Link>
     </div>
   );
 };

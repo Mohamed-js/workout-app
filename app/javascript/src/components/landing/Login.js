@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signin } from "../../Helper";
 
 const Login = ({ setAuthenticated }) => {
@@ -72,6 +72,7 @@ const Login = ({ setAuthenticated }) => {
           value="LOGIN"
         />
       </form>
+      <Link to={"/signup"}>Don't have an account? Signup</Link>
     </div>
   );
 };
