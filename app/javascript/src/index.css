@@ -7,7 +7,7 @@
 
 body {
   margin: 0;
-  background-color: #f3f4f6;
+  background-color: #171717;
   overflow: hidden;
   font-size: 12px;
 }
@@ -512,7 +512,7 @@ input.login {
   background: #282828;
   padding: 20px;
   padding-top: 45px;
-  box-shadow: white 0px 1px 10px inset;
+  box-shadow: #898989 0px 1px 10px inset;
 }
 
 ::-webkit-scrollbar {
