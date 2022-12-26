@@ -4,10 +4,10 @@ import { faSignOutAlt, faPersonBooth } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const More = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const user = JSON.parse(sessionStorage.getItem('current_user'));
   if (!user) {
-    history.push('/');
+    navigate('/');
   }
   return (
     <div className="container">
@@ -15,7 +15,7 @@ const More = () => {
         type="button"
         className="logout flex-row btn space-between"
         onClick={() => {
-          history.push('/profile');
+          navigate('/profile');
         }}
       >
         PROFILE
@@ -27,7 +27,7 @@ const More = () => {
         className="logout flex-row btn space-between"
         onClick={() => {
           sessionStorage.removeItem('current_user');
-          history.push('/');
+          navigate('/');
         }}
       >
         LOGOUT

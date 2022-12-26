@@ -503,8 +503,8 @@ input.login {
 }
 
 .mobile-view {
-  width: 382px;
-  height: 743px;
+  width: 43vh;
+  height: 86vh;
   border-radius: 25px;
   overflow: hidden;
   border: 1px rgba(173, 172, 172, 0.322) solid;

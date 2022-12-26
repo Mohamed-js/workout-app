@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUntrackedMovements } from '../../actions';
 import { newMovement } from '../../Helper';
 
 const Addmove = () => {
   const dispatch = useDispatch();
+  const [change, setChange] = useState(true)
   const user = JSON.parse(sessionStorage.getItem('current_user'));
 
   useEffect(() => {
     if (user) {
       dispatch(fetchUntrackedMovements(user.authentication_token));
     }
-  }, [dispatch, user]);
+  }, [change]);
 
   const handleClick = (e) => {
     newMovement(user.authentication_token, e.target.id);
@@ -20,6 +20,7 @@ const Addmove = () => {
     e.target.style.backgroundColor = '#4caf50';
     e.target.textContent = 'Subscribed';
     dispatch(fetchUntrackedMovements(user.authentication_token));
+    setChange(prev => !prev)
   };
 
   const { movements } = useSelector((state) => state.untrackedMovements);

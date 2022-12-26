@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { signin } from '../../Helper';
 
 const Login = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [credits, setCredits] = useState({
     name: '',
     password: '',
@@ -11,7 +11,7 @@ const Login = () => {
   const [failure, setFailure] = useState();
   const user = JSON.parse(sessionStorage.getItem('current_user'));
   if (user) {
-    history.push('/home');
+    navigate('/home');
   }
 
   const handleChange = (e) => {
@@ -34,7 +34,7 @@ const Login = () => {
     if (respond && respond.failure) return setFailure(respond.failure);
     setFailure('');
     sessionStorage.setItem('current_user', JSON.stringify(respond));
-    return history.push('/home');
+    return navigate('/home');
   };
 
   if (failure) {

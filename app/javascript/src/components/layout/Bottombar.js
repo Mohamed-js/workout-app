@@ -9,7 +9,7 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 
 const Bottombar = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const handleClick = (e) => {
     if (e.target.classList.contains('nav-item')) {
       const navs = document.querySelectorAll('.nav-item');
@@ -21,7 +21,7 @@ const Bottombar = () => {
       e.target.style.color = 'white';
       e.target.firstElementChild.style.color = 'white';
       e.target.style.backgroundColor = '#41b5e8';
-      history.push(`/${e.target.getAttribute('nav')}`);
+      navigate(`/${e.target.getAttribute('nav')}`);
     }
   };
 

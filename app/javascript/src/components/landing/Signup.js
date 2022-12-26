@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { signup } from '../../Helper';
 
 const SignUp = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [credits, setCredits] = useState({
     name: '',
     password: '',
@@ -13,7 +13,7 @@ const SignUp = () => {
   const [failure, setFailure] = useState();
   const user = JSON.parse(sessionStorage.getItem('current_user'));
   if (user) {
-    history.push('/home');
+    navigate('/home');
   }
   const handleClick = () => {
     const btn = document.getElementById('signup');

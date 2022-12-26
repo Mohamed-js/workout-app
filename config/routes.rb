@@ -10,4 +10,5 @@ Rails.application.routes.draw do
       resources :untracked_movements, only: :index
     end
   end
+  get '*path', to: 'app#index'
 end

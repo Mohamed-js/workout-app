@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import ProgressChart from '../components/progress/Chart';
 import ProgressItem from '../components/progress/ProgressItem';
 import { userProfile } from '../Helper';
 
 const Progress = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
   const [userInfo, setUserInfo] = useState('');
   useEffect(() => {
@@ -19,7 +19,7 @@ const Progress = () => {
   }, []);
 
   if (userInfo === null) {
-    history.push('/');
+    navigate('/');
   }
   let weightLeftPercent;
   let bmi;

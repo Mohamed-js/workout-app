@@ -1,4 +1,4 @@
-const baseURL = 'https://diagnoser-proxy.herokuapp.com/http://workout-track-api.herokuapp.com/api/v1';
+const baseURL = '/api/v1';
 
 export const signup = async (credits) => {
   const respond = await fetch(`${baseURL}/users`, {
