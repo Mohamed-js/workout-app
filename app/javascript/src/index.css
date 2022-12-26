@@ -9,6 +9,7 @@ body {
   margin: 0;
   background-color: #f3f4f6;
   overflow: hidden;
+  font-size: 12px;
 }
 
 .curved {
@@ -18,6 +19,10 @@ body {
 a {
   color: black;
   text-decoration: none;
+}
+
+h1 {
+  font-size: 14px;
 }
 
 input {
@@ -37,6 +42,8 @@ input {
 .App {
   min-height: 100vh;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .container {
@@ -111,10 +118,12 @@ input {
   background-color: #323943;
   color: #b0b4b9;
   border: none;
+  font-size: 9px;
 }
 
 .back {
-  padding-left: 10px;
+  text-align: center;
+  width: 40px;
 }
 
 .back svg {
@@ -128,10 +137,10 @@ input {
 
 button.nav-item svg {
   margin-bottom: 5px;
+  font-size: 12px;
 }
 
 .bottombar p {
-  font-size: small;
   margin: 0;
   margin-top: 3px;
 }
@@ -151,11 +160,6 @@ button.nav-item svg {
   margin: auto !important;
 }
 
-.header {
-  position: absolute;
-  left: calc(50% - 69px);
-}
-
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -164,7 +168,7 @@ button.nav-item svg {
 
 .grid-item {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   background-color: white;
   height: fit-content;
@@ -176,7 +180,7 @@ button.nav-item svg {
 }
 
 .img-container {
-  min-height: 90px;
+  height: 35px;
   width: 50%;
   display: flex;
   align-items: center;
@@ -193,12 +197,11 @@ button.nav-item svg {
 
 .name-container p {
   margin: 0;
-  font-size: small;
 }
 
 .name-container span {
   color: #878b91;
-  font-size: 26px;
+
   font-weight: 700;
 }
 
@@ -260,20 +263,18 @@ button.nav-item svg {
 
 .start {
   position: relative;
-  height: 200px;
-  width: 200px;
-  font-size: 25px;
+  height: 16vh;
+  width: 16vh;
   border-radius: 50%;
-  left: calc(50% - 100px);
+  left: calc(50% - 8vh);
   top: 40px;
 }
 
 .circle {
-  height: 200px;
-  width: 200px;
-  font-size: 40px;
+  height: 16vh;
+  width: 16vh;
   border-radius: 50%;
-  left: calc(50% - 100px);
+  left: calc(50% - 8vh);
   top: 40px;
   margin-bottom: 50px;
   max-height: 150px;
@@ -365,8 +366,9 @@ input.login {
 .logout {
   background-color: white;
   padding: 10px;
-  font-weight: 700;
+  font-weight: 500;
   color: #8797a6;
+  font-size: 10px;
 }
 
 .m-0 {
@@ -422,7 +424,6 @@ input.login {
 
 .svg-inline--fa {
   color: #b0b4b9;
-  font-size: 18px;
 }
 
 .track-plus {
@@ -434,7 +435,6 @@ input.login {
 }
 
 .big {
-  font-size: 18px;
   font-weight: 800;
 }
 
@@ -487,14 +487,13 @@ input.login {
 }
 
 .progress ul {
-  font-size: small;
   padding-left: 0;
   list-style-type: none;
 }
 
 .progress li {
   font-weight: 400;
-  font-size: 12px;
+
   margin-bottom: 3px;
 }
 
@@ -503,8 +502,8 @@ input.login {
 }
 
 .mobile-view {
-  width: 43vh;
-  height: 86vh;
+  width: 50vh;
+  height: 90vh;
   border-radius: 25px;
   overflow: hidden;
   border: 1px rgba(173, 172, 172, 0.322) solid;

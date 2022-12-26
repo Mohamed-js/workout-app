@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { newRecord } from '../../Helper';
-import { fetchUserRecords } from '../../actions';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { newRecord } from "../../Helper";
+import { fetchUserRecords } from "../../actions";
 
 const NewRecord = () => {
   const [exercise, setExercise] = useState();
@@ -10,20 +10,18 @@ const NewRecord = () => {
   const [circle, setCircle] = useState();
   const [message, setMessage] = useState();
   const history = useNavigate();
-  const user = JSON.parse(sessionStorage.getItem('current_user'));
-  if (!user) {
-    history.push('/');
-  }
+  const user = JSON.parse(sessionStorage.getItem("current_user"));
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (user) {
       dispatch(fetchUserRecords(user.authentication_token));
     }
-  });
+  }, []);
 
   const trackedMovements = useSelector((state) => state.user.trackedMovements);
-  const options = [''];
+  const options = [""];
   if (trackedMovements) {
     trackedMovements.forEach((movement) => {
       options.push({ name: movement.name, id: movement.id });
@@ -37,14 +35,14 @@ const NewRecord = () => {
   const handleStart = (e) => {
     if (exercise) {
       setCircle(true);
-      e.target.style.display = 'none';
+      e.target.style.display = "none";
     }
   };
 
   const handleRec = async () => {
     setCircle(false);
-    setCount(document.getElementById('circle').value);
-    document.getElementById('start').style.display = 'inline-block';
+    setCount(document.getElementById("circle").value);
+    document.getElementById("start").style.display = "inline-block";
     const message = await newRecord(user.authentication_token, exercise, count);
     setMessage(message);
   };

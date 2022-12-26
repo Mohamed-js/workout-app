@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
-import ProgressChart from '../components/progress/Chart';
-import ProgressItem from '../components/progress/ProgressItem';
-import { userProfile } from '../Helper';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import Loading from "../components/layout/Loading";
+import ProgressChart from "../components/progress/Chart";
+import ProgressItem from "../components/progress/ProgressItem";
+import { userProfile } from "../Helper";
 
 const Progress = () => {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
-  const [userInfo, setUserInfo] = useState('');
+  const [userInfo, setUserInfo] = useState("");
   useEffect(() => {
     if (user) {
       userProfile(user.authentication_token).then((data) => {
@@ -19,7 +20,7 @@ const Progress = () => {
   }, []);
 
   if (userInfo === null) {
-    navigate('/');
+    navigate("/");
   }
   let weightLeftPercent;
   let bmi;
@@ -36,20 +37,21 @@ const Progress = () => {
     weightLeftPercent = (weightLeft / userInfo.current_weight) * 100;
     bmi = userInfo.current_weight / heightSquare;
     weightBuild = (
-      ((userInfo.current_weight - userInfo.last_weight) / userInfo.last_weight)
-      * 100
+      ((userInfo.current_weight - userInfo.last_weight) /
+        userInfo.last_weight) *
+      100
     ).toFixed(2);
     if (userInfo.last_weight === 0) {
       weightBuild = 0;
     }
 
-    state = weightBuild > 0 ? 'Built' : 'Lost';
-    stateTo = weightLeft < 0 ? 'build' : 'lose';
+    state = weightBuild > 0 ? "Built" : "Lost";
+    stateTo = weightLeft < 0 ? "build" : "lose";
   }
 
   return (
     <>
-      {userInfo && (
+      {userInfo ? (
         <div className="container">
           <div className="white-bg rounded full-width progress">
             <ProgressItem
@@ -70,12 +72,8 @@ const Progress = () => {
           </div>
           {(bmi > 24.9 || bmi < 18.5) && (
             <h6 className="grey text-center">
-              Your have to
-              {' '}
-              {stateTo}
-              {' '}
-              <strong className="big">{Math.abs(weightLeft).toFixed(2)}</strong>
-              {' '}
+              Your have to {stateTo}{" "}
+              <strong className="big">{Math.abs(weightLeft).toFixed(2)}</strong>{" "}
               kg to achive the perfect weight.
             </h6>
           )}
@@ -105,6 +103,8 @@ const Progress = () => {
           <br />
           <br />
         </div>
+      ) : (
+        <Loading />
       )}
     </>
   );

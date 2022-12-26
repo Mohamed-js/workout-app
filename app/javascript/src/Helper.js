@@ -1,9 +1,9 @@
-const baseURL = '/api/v1';
+const baseURL = "/api/v1";
 
 export const signup = async (credits) => {
   const respond = await fetch(`${baseURL}/users`, {
-    headers: { 'Content-Type': 'application/json' },
-    method: 'post',
+    headers: { "Content-Type": "application/json" },
+    method: "post",
     body: JSON.stringify({ user: credits }),
   })
     .then((res) => res.json())
@@ -13,8 +13,8 @@ export const signup = async (credits) => {
 
 export const signin = async (credits) => {
   const respond = await fetch(`${baseURL}/sessions`, {
-    headers: { 'Content-Type': 'application/json' },
-    method: 'post',
+    headers: { "Content-Type": "application/json" },
+    method: "post",
     body: JSON.stringify(credits),
   })
     .then((res) => res.json())
@@ -25,10 +25,10 @@ export const signin = async (credits) => {
 export const newMovement = async (token, movementID) => {
   const respond = await fetch(`${baseURL}/tracked_movements`, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: token,
     },
-    method: 'post',
+    method: "post",
     body: JSON.stringify({ movement_id: movementID }),
   })
     .then((res) => res.json())
@@ -39,10 +39,10 @@ export const newMovement = async (token, movementID) => {
 export const newRecord = async (token, movementID, movementCount) => {
   const respond = await fetch(`${baseURL}/records`, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: token,
     },
-    method: 'post',
+    method: "post",
     body: JSON.stringify({
       movement_id: movementID,
       movement_count: movementCount,
@@ -56,7 +56,7 @@ export const newRecord = async (token, movementID, movementCount) => {
 export const movementUserTopscore = async (token, movementID) => {
   const respond = await fetch(`${baseURL}/records/${movementID}`, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: token,
     },
   })
@@ -68,10 +68,10 @@ export const movementUserTopscore = async (token, movementID) => {
 export const updateProfile = async (token, Weight, Height) => {
   const respond = await fetch(`${baseURL}/users/user`, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: token,
     },
-    method: 'put',
+    method: "put",
     body: JSON.stringify({
       weight: Weight,
       height: Height,
@@ -85,11 +85,22 @@ export const updateProfile = async (token, Weight, Height) => {
 export const userProfile = async (token) => {
   const respond = await fetch(`${baseURL}/users/user`, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: token,
     },
   })
     .then((res) => res.json())
     .then((data) => data);
+  return respond;
+};
+
+export const authenticate = async (token) => {
+  const respond = await fetch(`${baseURL}/auth?token=${token}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => data.existance);
   return respond;
 };

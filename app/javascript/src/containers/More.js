@@ -1,21 +1,18 @@
-import React from 'react';
-import { useNavigate } from 'react-router';
-import { faSignOutAlt, faPersonBooth } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import { useNavigate } from "react-router";
+import { faSignOutAlt, faPersonBooth } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const More = () => {
+const More = ({ setAuthenticated }) => {
   const navigate = useNavigate();
-  const user = JSON.parse(sessionStorage.getItem('current_user'));
-  if (!user) {
-    navigate('/');
-  }
+
   return (
     <div className="container">
       <button
         type="button"
         className="logout flex-row btn space-between"
         onClick={() => {
-          navigate('/profile');
+          navigate("/profile");
         }}
       >
         PROFILE
@@ -26,8 +23,9 @@ const More = () => {
         type="button"
         className="logout flex-row btn space-between"
         onClick={() => {
-          sessionStorage.removeItem('current_user');
-          navigate('/');
+          sessionStorage.removeItem("current_user");
+          setAuthenticated(false);
+          navigate("/");
         }}
       >
         LOGOUT

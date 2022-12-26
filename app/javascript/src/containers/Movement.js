@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router';
-import 'react-circular-progressbar/dist/styles.css';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { fetchUserRecords } from '../actions';
-import { movementUserTopscore } from '../Helper';
-import Record from '../components/movement/Record';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import "react-circular-progressbar/dist/styles.css";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { fetchUserRecords } from "../actions";
+import { movementUserTopscore } from "../Helper";
+import Record from "../components/movement/Record";
 
 const Showpage = () => {
-  const { id } = useParams(':id');
+  const { id } = useParams(":id");
   const [topScore, setTopScore] = useState();
   const dispatch = useDispatch();
-  const user = JSON.parse(sessionStorage.getItem('current_user'));
+  const user = JSON.parse(sessionStorage.getItem("current_user"));
   useEffect(() => {
     dispatch(fetchUserRecords(user.authentication_token));
-    movementUserTopscore(user.authentication_token, id).then((data) => setTopScore(data));
+    movementUserTopscore(user.authentication_token, id).then((data) =>
+      setTopScore(data)
+    );
   }, []);
 
   const allrecords = useSelector((state) => state.user.records);
@@ -24,7 +26,7 @@ const Showpage = () => {
   let rec;
   if (allrecords) {
     records = allrecords.filter((x) => `${x.movement_id}` === id);
-    // eslint-disable-next-line
+
     rec = records[0];
   }
 
@@ -44,20 +46,16 @@ const Showpage = () => {
             <FontAwesomeIcon icon={faPlus} />
           </Link>
           {topScore && (
-            <h3 className="grey bold">
-              Top score:
-              {' '}
-              {topScore.movement_count}
-            </h3>
+            <h3 className="grey bold">Top score: {topScore.movement_count}</h3>
           )}
 
           <h5 className="today grey">Today</h5>
           {records.map((move) => {
             const today = new Date();
             const timestamp = new Date(move.created_at);
-            let color = move.movement_count > 70 ? '#4caf50' : '#3e98c7';
+            let color = move.movement_count > 70 ? "#4caf50" : "#3e98c7";
             if (move.movement_count < 20) {
-              color = '#ffc107';
+              color = "#ffc107";
             }
             let isToday;
             if (today.toLocaleDateString() === timestamp.toLocaleDateString()) {
@@ -78,9 +76,9 @@ const Showpage = () => {
           {records.map((move) => {
             const today = new Date();
             const timestamp = new Date(move.created_at);
-            let color = move.movement_count > 70 ? '#4caf50' : '#3e98c7';
+            let color = move.movement_count > 70 ? "#4caf50" : "#3e98c7";
             if (move.movement_count < 20) {
-              color = '#ffc107';
+              color = "#ffc107";
             }
             let isToday;
             if (today.toLocaleDateString() !== timestamp.toLocaleDateString()) {

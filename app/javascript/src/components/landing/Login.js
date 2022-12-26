@@ -1,46 +1,43 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { signin } from '../../Helper';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { signin } from "../../Helper";
 
-const Login = () => {
+const Login = ({ setAuthenticated }) => {
   const navigate = useNavigate();
   const [credits, setCredits] = useState({
-    name: '',
-    password: '',
+    name: "",
+    password: "",
   });
   const [failure, setFailure] = useState();
-  const user = JSON.parse(sessionStorage.getItem('current_user'));
-  if (user) {
-    navigate('/home');
-  }
 
   const handleChange = (e) => {
     setCredits({ ...credits, [e.target.name]: e.target.value });
   };
 
   const handleClick = () => {
-    const btn = document.getElementById('login');
+    const btn = document.getElementById("login");
     btn.disabled = true;
-    btn.style.backgroundColor = '#4caf50';
-    btn.value = 'Wait...';
-    btn.textContent = 'Wait...';
+    btn.style.backgroundColor = "#4caf50";
+    btn.value = "Wait...";
+    btn.textContent = "Wait...";
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFailure('');
+    setFailure("");
     handleClick();
     const respond = await signin(credits);
     if (respond && respond.failure) return setFailure(respond.failure);
-    setFailure('');
-    sessionStorage.setItem('current_user', JSON.stringify(respond));
-    return navigate('/home');
+    setFailure("");
+    sessionStorage.setItem("current_user", JSON.stringify(respond));
+    navigate("/");
+    return setAuthenticated(true);
   };
 
   if (failure) {
-    const btn = document.getElementById('login');
+    const btn = document.getElementById("login");
     btn.disabled = false;
-    btn.style.backgroundColor = '#41b5e8';
+    btn.style.backgroundColor = "#41b5e8";
   }
   return (
     <div className="flex-col container">

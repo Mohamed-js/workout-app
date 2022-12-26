@@ -3,25 +3,25 @@ import {
   faPlus,
   faEllipsisH,
   faRunning,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import { useNavigate } from 'react-router';
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { useNavigate } from "react-router";
 
 const Bottombar = () => {
   const navigate = useNavigate();
   const handleClick = (e) => {
-    if (e.target.classList.contains('nav-item')) {
-      const navs = document.querySelectorAll('.nav-item');
+    if (e.target.classList.contains("nav-item")) {
+      const navs = document.querySelectorAll(".nav-item");
       for (let i = 0; i < navs.length; i += 1) {
         const x = navs[i];
-        x.style.backgroundColor = '#323943';
-        x.style.color = '#b0b4b9';
+        x.style.backgroundColor = "#323943";
+        x.style.color = "#b0b4b9";
       }
-      e.target.style.color = 'white';
-      e.target.firstElementChild.style.color = 'white';
-      e.target.style.backgroundColor = '#41b5e8';
-      navigate(`/${e.target.getAttribute('nav')}`);
+      e.target.style.color = "white";
+      e.target.firstElementChild.style.color = "white";
+      e.target.style.backgroundColor = "#41b5e8";
+      navigate(`/${e.target.getAttribute("nav")}`);
     }
   };
 
@@ -52,7 +52,7 @@ const Bottombar = () => {
         onClick={handleClick}
       >
         <FontAwesomeIcon icon={faChartPie} />
-        Your progress
+        My progress
       </button>
       <button
         type="button"
