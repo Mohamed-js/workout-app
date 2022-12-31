@@ -6,9 +6,8 @@ class ReactorGenerator < Rails::Generators::NamedBase
                 field = arg.split(":")[0]
                 type = arg.split(":")[1]
                 
-                "#{"<p>{#{plural_name.singularize}.#{field}}</p>"}"
+                "<p>{#{plural_name.singularize}.#{field}}</p>"
               end
-
     # CREATE INDEX PAGE
     create_file "app/javascript/components/#{plural_name.capitalize}/#{plural_name.capitalize}.jsx", <<-FILE
 import React, { useEffect, useState } from "react";
@@ -26,8 +25,7 @@ const #{plural_name.capitalize} = () => {
           {#{plural_name}.map((#{plural_name.singularize}) => {
             return (
               <div style={{ display: "flex" }}>
-                #{data[0] if data[0]}
-                #{data[1] if data[1]}
+                #{args.map do |arg| "<p>{#{plural_name.singularize}.#{arg.split(":")[0]}}</p>\n                " end.join('')}
               </div>
             );
           })}
@@ -47,7 +45,7 @@ export default #{plural_name.capitalize};
                 field = arg.split(":")[0]
                 type = arg.split(":")[1]
                 
-                "<label for='#{field}'>#{field.capitalize}</label>\n        <input  name='#{field}' placeholder='#{field.capitalize}' type='text' onChange={(e) => handleChange(e)} />"
+                "<label for='#{field}'>#{field.capitalize}</label>\n        <input  name='#{field}' placeholder='#{field.capitalize}' type='text' onChange={(e) => handleChange(e)} />\n        "
               end
     
 
@@ -63,12 +61,7 @@ const New#{class_name} = () => {
     <>
       <h1>New #{class_name}</h1>
       <form onSubmit={handleSubmit}>
-        #{fields[0] if fields[0]}
-        #{fields[1] if fields[1]}
-        #{fields[2] if fields[2]}
-        #{fields[3] if fields[3]}
-        #{fields[4] if fields[4]}
-        #{fields[5] if fields[5]}
+        #{fields.join('')}
       </form>
     </>
   );
