@@ -12,4 +12,5 @@ Rails.application.routes.draw do
     end
   end
   get '*path', to: 'app#index'
+  get "/refresher", to: "app#refresher"
 end
