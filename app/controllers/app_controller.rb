@@ -3,7 +3,7 @@ class AppController < ApplicationController
     end
 
     def refresher
-        Net::HTTP.get(URI('https://appyrefresher.onrender.com/refresher'))
+        Net::HTTP.get(URI('http://refresher-app.onrender.com/refresher'))
         render json: 'I\'m good!'
     end
 end
